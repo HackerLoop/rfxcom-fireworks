@@ -1,0 +1,20 @@
+{
+  "name": "rfxcom-fireworks",
+  "version": "1.0.0",
+  "description": "Node.js example to use a RFXCOM to operate a 433MHz fireworks system.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node example.js",
+    "dev": "nodemon example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jorand/rfxcom-fireworks.git"
+  },
+  "author": "Jorand",
+  "license": "MIT",
+  "homepage": "https://github.com/Jorand/rfxcom-fireworks#readme",
+  "dependencies": {
+    "rfxcom": "^2.1.1"
+  }
+}
