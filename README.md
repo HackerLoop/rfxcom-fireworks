@@ -52,7 +52,9 @@ rfxtrx.initialise(function () {
 
 ## Start example dev
 
-`node example.js`
+`npm i`
+
+`node example-webserver.js`
 
 ## Protocol
 

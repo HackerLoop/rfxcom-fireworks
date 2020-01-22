@@ -16,5 +16,10 @@
   "homepage": "https://github.com/Jorand/rfxcom-fireworks#readme",
   "dependencies": {
     "rfxcom": "^2.1.1"
+  },
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "path": "^0.12.7"
   }
 }
