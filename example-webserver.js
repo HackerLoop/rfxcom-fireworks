@@ -46,7 +46,9 @@ app.post('/', function(request, respond) {
     });
   }
 
-  respond.redirect("/");
+  //respond.end();
+  //respond.redirect("/");
+  respond.sendStatus(200);
 });
 
 app.listen(port)
