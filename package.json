@@ -4,8 +4,8 @@
   "description": "Node.js example to use a RFXCOM to operate a 433MHz fireworks system.",
   "main": "index.js",
   "scripts": {
-    "start": "node example.js",
-    "dev": "nodemon example.js"
+    "start": "node example-webserver.js",
+    "dev": "nodemon example-webserver.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "ip": "^1.1.5"
   }
 }

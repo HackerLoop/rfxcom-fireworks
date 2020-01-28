@@ -4,7 +4,6 @@ var express = require("express"),
     path = require('path'),
     bodyParser = require('body-parser'),
     app = express(),
-    bodyParser = require('body-parser'),
     port = process.env["PORT"] || 8080;
 
 var rfxtrx = new rfxcom.RfxCom("/dev/tty.usbserial-DO3O5EMF", {debug: false}),
@@ -30,10 +29,7 @@ rfxtrx.initialise(function () {
 
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname+'/index.html'));
-});
+app.use(express.static(__dirname + '/public'));
 
 app.post('/', function(request, respond) {
   var data = request.body;
@@ -49,7 +45,11 @@ app.post('/', function(request, respond) {
       console.log("Transmit OK");
     });
   }
+
+  respond.redirect("/");
 });
 
 app.listen(port)
 console.log("listening to server on port:", port);
+var localIP = require('ip').address();
+console.log(`listening to server on: http://${localIP}:${port}`);
