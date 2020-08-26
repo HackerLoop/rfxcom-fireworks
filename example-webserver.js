@@ -6,7 +6,7 @@ var express = require("express"),
     app = express(),
     port = process.env["PORT"] || 8080;
 
-var rfxtrx = new rfxcom.RfxCom("/dev/tty.usbserial-DO3O5EMF", {debug: false}),
+var rfxtrx = new rfxcom.RfxCom("COM3", {debug: false}),
     lighting4 = new rfxcom.Lighting4(rfxtrx, rfxcom.lighting4.PT2262);
 
 rfxtrx.on("lighting4", function (evt) {
