@@ -1,6 +1,6 @@
 {
   "name": "rfxcom-fireworks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js example to use a RFXCOM to operate a 433MHz fireworks system.",
   "main": "index.js",
   "scripts": {
