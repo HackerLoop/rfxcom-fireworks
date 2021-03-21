@@ -2,28 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="jquery.min.js" charset="utf-8"></script>
-  <script type="text/javascript">
-  $(function() {
-    $('#myForm').submit(function(event) {
-        event.preventDefault();
-
-        var button = event.target.value;
-        var data = $(this).serialize() +'&'+
-          encodeURI(button) +'='+
-          encodeURI(button);
-
-        console.log(data);
-        $.post('/', data, function(resp) {
-            console.log(resp);
-            // do something when it was successful
-        });
-    });
-  });
-  </script>
 </head>
 <body>
-  <h2>Hello</h2>
+  <h2>Fireworks</h2>
   <form action="/" method="post" id="myForm">
     <label for="area">Area (0-99)</label>
     <input type="text" name="area" value="1">
@@ -39,5 +22,63 @@
     <button type="submit" name="rapid" value="rapid"
       onclick="this.parentNode.value='rapid';">Rapid fire</button>
   </form>
+
+  <h2>Light sockets</h2>
+  <label>1: </label>
+  <a class="jsCall" href="light?on=1"><button class="button">ON</button></a>
+  <a class="jsCall" href="light?off=1"><button class="button">OFF</button></a>
+  <br><br>
+
+  <label>2: </label>
+  <a class="jsCall" href="light?on=2"><button class="button">ON</button></a>
+  <a class="jsCall" href="light?off=2"><button class="button">OFF</button></a>
+  <br><br>
+
+  <label>3: </label>
+  <a class="jsCall" href="light?on=3"><button class="button">ON</button></a>
+  <a class="jsCall" href="light?off=3"><button class="button">OFF</button></a>
+  <br><br>
+
+  <label>4: </label>
+  <a class="jsCall" href="light?on=4"><button class="button">ON</button></a>
+  <a class="jsCall" href="light?off=4"><button class="button">OFF</button></a>
+  <br><br>
+
+  <label>5: </label>
+  <a class="jsCall" href="light?on=5"><button class="button">ON</button></a>
+  <a class="jsCall" href="light?off=5"><button class="button">OFF</button></a>
+  <br><br>
+
+  <label>ALL: </label>
+  <a class="jsCall" href="light?all=on"><button class="button">ON</button></a>
+  <a class="jsCall" href="light?all=off"><button class="button">OFF</button></a>
 </body>
+
+<script type="text/javascript">
+$(function() {
+  $('#myForm').submit(function(event) {
+      event.preventDefault();
+
+      var button = event.target.value;
+      var data = $(this).serialize() +'&'+
+        encodeURI(button) +'='+
+        encodeURI(button);
+
+      console.log(data);
+      $.post('/', data, function(resp) {
+          console.log(resp);
+          // do something when it was successful
+      });
+  });
+
+  $('a.jsCall').click(function(event) {
+    event.preventDefault();
+    var get = $(this).attr('href');
+    console.log(get);
+    $.get(get, (resp) => {
+      console.log(resp);
+    });
+  });
+});
+</script>
 </html>

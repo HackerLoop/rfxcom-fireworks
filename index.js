@@ -10,7 +10,7 @@ function d2h(d, pad=false) {
     return s;
 }
 
-class newLighting4 extends rfxcom.Lighting4 {
+class Lighting4_FIREWORKS extends rfxcom.Lighting4 {
   constructor(rfxcom, subtype, options) {
     super(rfxcom, subtype, options);
   }
@@ -50,6 +50,69 @@ class newLighting4 extends rfxcom.Lighting4 {
 
 }
 
-rfxcom.Lighting4 = newLighting4
+
+class Lighting4_SCS_HCN0018 extends rfxcom.Lighting4 {
+  constructor(rfxcom, subtype, options) {
+    super(rfxcom, subtype, options);
+    this.socketsHex = ['553', `55C`, `570`, `5D0`, `750`];
+  }
+
+  /**
+   * Turn on a specific socket
+   * @param {number} socket - 1 to 5
+   * @param {function} callback
+   * @return {number} seqnbr
+   */
+  switchOn(socket = 1, callback) {
+    var hexSocket = this.socketsHex[Math.abs(socket)-1];
+    if (hexSocket) {
+      return this.sendData("0x45"+ hexSocket +"3", 172, callback);
+    }
+    else {
+      console.log("[rfxcom] lighting4.switchOn: Invalid socket number - range 1 to 5");
+      return false;
+    }
+  }
+  /**
+   * Turn off a specific socket
+   * @param {number} socket - 1 to 5
+   * @param {function} callback
+   * @return {number} seqnbr
+   */
+  switchOff(socket = 1, callback) {
+    var hexSocket = this.socketsHex[Math.abs(socket)-1];
+    if (hexSocket) {
+      return this.sendData("0x45"+ hexSocket +"C", 172, callback);
+    }
+    else {
+      console.log("[rfxcom] lighting4.switchOff: Invalid socket number - range 1 to 5");
+      return false;
+    }
+  }
+  /**
+   * Turn on all sockets
+   */
+  switchAllOn() {
+    this.switchOn(1);
+    this.switchOn(2);
+    this.switchOn(3);
+    this.switchOn(4);
+    this.switchOn(5);
+  }
+  /**
+   * Turn off all sockets
+   */
+  switchAllOff() {
+    this.switchOff(1);
+    this.switchOff(2);
+    this.switchOff(3);
+    this.switchOff(4);
+    this.switchOff(5);
+  }
+
+}
+
+rfxcom.Lighting4_fireworks = Lighting4_FIREWORKS
+rfxcom.Lighting4_scs_HCN0018 = Lighting4_SCS_HCN0018
 
 module.exports = rfxcom;
